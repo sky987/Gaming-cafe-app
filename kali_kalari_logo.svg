@@ -1,0 +1,196 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9D00FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF1493;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9D00FF;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="800" height="800" fill="#0D0D0D"/>
+  
+  <!-- Simple outer ring -->
+  <circle cx="400" cy="400" r="300" fill="none" stroke="url(#gradient1)" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Main circular background -->
+  <circle cx="400" cy="400" r="260" fill="#1A1A1A" stroke="url(#gradient2)" stroke-width="3"/>
+  
+  <!-- Popular Game Icons (Clean & Simple) -->
+  
+  <!-- FIFA Soccer Ball (Top) -->
+  <g transform="translate(400,180)" opacity="0.7">
+    <circle cx="0" cy="0" r="30" fill="#00A651"/>
+    <circle cx="0" cy="0" r="24" fill="#FFFFFF"/>
+    <path d="M 0,-10 L 10,-5 L 6,8 L -6,8 L -10,-5 Z" fill="#000000"/>
+  </g>
+  
+  <!-- WWE Championship Belt (Right) -->
+  <g transform="translate(580,400)" opacity="0.7">
+    <ellipse cx="0" cy="0" rx="35" ry="25" fill="#FFD700" stroke="#8B0000" stroke-width="2"/>
+    <rect x="-20" y="-8" width="40" height="16" rx="2" fill="#8B0000"/>
+    <text x="0" y="5" font-family="Arial Black" font-size="12" font-weight="bold" fill="#FFD700" text-anchor="middle">WWE</text>
+  </g>
+  
+  <!-- Mortal Kombat Dragon (Bottom) -->
+  <g transform="translate(400,620)" opacity="0.7">
+    <circle cx="0" cy="0" r="30" fill="#000000"/>
+    <path d="M -15,-10 Q -8,-20 0,-18 Q 8,-20 15,-10 Q 10,-5 5,0 Q 0,5 -5,0 Q -10,-5 -15,-10" 
+          fill="#FFD700" stroke="#FF0000" stroke-width="2"/>
+    <circle cx="-6" cy="-8" r="2" fill="#FF0000" filter="url(#glow)"/>
+    <circle cx="6" cy="-8" r="2" fill="#FF0000" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Valorant Logo (Left) -->
+  <g transform="translate(220,400)" opacity="0.7">
+    <circle cx="0" cy="0" r="30" fill="#FF4655"/>
+    <path d="M -12,15 L 0,-15 L 12,15 L 0,8 Z" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- PUBG/Battle Royale Pan (Top Right) -->
+  <g transform="translate(540,240)" opacity="0.6">
+    <circle cx="0" cy="0" r="28" fill="#FF8C00"/>
+    <ellipse cx="0" cy="2" rx="18" ry="15" fill="#2F4F4F" stroke="#1A1A1A" stroke-width="2"/>
+    <rect x="-3" y="12" width="6" height="15" rx="2" fill="#654321"/>
+  </g>
+  
+  <!-- GTA V Star (Top Left) -->
+  <g transform="translate(260,240)" opacity="0.6">
+    <circle cx="0" cy="0" r="28" fill="#4CAF50"/>
+    <path d="M 0,-15 L 4,-5 L 15,-5 L 7,2 L 10,12 L 0,6 L -10,12 L -7,2 L -15,-5 L -4,-5 Z" 
+          fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+  </g>
+  
+  <!-- COD Target (Bottom Right) -->
+  <g transform="translate(540,560)" opacity="0.6">
+    <circle cx="0" cy="0" r="28" fill="#1A1A1A"/>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#00FF00" stroke-width="2"/>
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#00FF00" stroke-width="2"/>
+    <circle cx="0" cy="0" r="4" fill="#00FF00" filter="url(#glow)"/>
+    <line x1="-22" y1="0" x2="-14" y2="0" stroke="#00FF00" stroke-width="2"/>
+    <line x1="22" y1="0" x2="14" y2="0" stroke="#00FF00" stroke-width="2"/>
+    <line x1="0" y1="-22" x2="0" y2="-14" stroke="#00FF00" stroke-width="2"/>
+    <line x1="0" y1="22" x2="0" y2="14" stroke="#00FF00" stroke-width="2"/>
+  </g>
+  
+  <!-- Rocket League Ball (Bottom Left) -->
+  <g transform="translate(260,560)" opacity="0.6">
+    <circle cx="0" cy="0" r="28" fill="#0080FF"/>
+    <circle cx="0" cy="0" r="22" fill="#FFFFFF"/>
+    <path d="M -15,0 L 15,0 M 0,-15 L 0,15 M -10,-10 L 10,10 M -10,10 L 10,-10" 
+          stroke="#FF8C00" stroke-width="2"/>
+  </g>
+  
+  <!-- Central Gaming Setup -->
+  
+  <!-- Kalari Sword (Left) - Simplified -->
+  <g transform="translate(300,400)">
+    <line x1="0" y1="-80" x2="0" y2="80" stroke="url(#gradient2)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="0" cy="-80" r="10" fill="#FFD700" stroke="#00FFFF" stroke-width="2" filter="url(#glow)"/>
+    <line x1="-2" y1="-80" x2="-2" y2="80" stroke="#00FFFF" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- Kalari Staff (Right) - Simplified -->
+  <g transform="translate(500,400)">
+    <line x1="0" y1="-80" x2="0" y2="80" stroke="url(#gradient2)" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="0" cy="-80" r="10" fill="#FFD700" stroke="#FF1493" stroke-width="2" filter="url(#glow)"/>
+    <line x1="2" y1="-80" x2="2" y2="80" stroke="#FF1493" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- PS5 DualSense Controller (Center) -->
+  <g transform="translate(400,380)">
+    <!-- Controller body -->
+    <ellipse cx="0" cy="0" rx="60" ry="32" fill="#F0F0F0" stroke="#1A1A1A" stroke-width="2"/>
+    <!-- Black section -->
+    <rect x="-35" y="-18" width="70" height="36" rx="6" fill="#1A1A1A"/>
+    <!-- Touchpad -->
+    <rect x="-28" y="-12" width="56" height="24" rx="4" fill="#2A2A2A" stroke="#00FFFF" stroke-width="1"/>
+    
+    <!-- LED light bar -->
+    <rect x="-25" y="-26" width="50" height="4" rx="2" fill="url(#gradient1)" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- PS button -->
+    <circle cx="0" cy="0" r="7" fill="#2A2A2A" stroke="#00FFFF" stroke-width="1.5"/>
+    <text x="0" y="3" font-family="Arial" font-size="7" font-weight="bold" fill="#00FFFF" text-anchor="middle">PS</text>
+    
+    <!-- Left and right grips -->
+    <ellipse cx="-55" cy="18" rx="22" ry="28" fill="#F0F0F0" stroke="#1A1A1A" stroke-width="2"/>
+    <ellipse cx="55" cy="18" rx="22" ry="28" fill="#F0F0F0" stroke="#1A1A1A" stroke-width="2"/>
+    
+    <!-- D-pad (left) -->
+    <g transform="translate(-40,-8)">
+      <path d="M -1,-10 L 1,-10 L 1,-1 L 10,-1 L 10,1 L 1,1 L 1,10 L -1,10 L -1,1 L -10,1 L -10,-1 L -1,-1 Z" 
+            fill="#2A2A2A" stroke="#00FFFF" stroke-width="0.5"/>
+    </g>
+    
+    <!-- Action buttons (right) -->
+    <g transform="translate(40,-8)">
+      <path d="M 0,-10 L 5,-3 L -5,-3 Z" fill="#00FF7F" stroke="#1A1A1A" stroke-width="1"/>
+      <circle cx="8" cy="0" r="4" fill="#FF6B6B" stroke="#1A1A1A" stroke-width="1"/>
+      <g transform="translate(0,10)">
+        <path d="M -3,-3 L 3,3 M -3,3 L 3,-3" stroke="#6B9EFF" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <rect x="-12" y="-4" width="7" height="7" fill="#FF9EFF" stroke="#1A1A1A" stroke-width="1"/>
+    </g>
+  </g>
+  
+  <!-- Gaming Keyboard (simplified) -->
+  <g transform="translate(400,330)" opacity="0.8">
+    <rect x="-35" y="0" width="70" height="20" rx="3" fill="#2A2A2A" stroke="#00FFFF" stroke-width="1"/>
+    <!-- WASD keys -->
+    <rect x="-20" y="4" width="10" height="10" rx="1" fill="#1A1A1A" stroke="#00FFFF" stroke-width="1"/>
+    <text x="-15" y="12" font-family="Arial" font-size="7" font-weight="bold" fill="#00FFFF" text-anchor="middle">W</text>
+    <rect x="-30" y="6" width="8" height="8" rx="1" fill="#1A1A1A" stroke="#00FFFF" stroke-width="1"/>
+    <rect x="-20" y="6" width="8" height="8" rx="1" fill="#1A1A1A" stroke="#00FFFF" stroke-width="1"/>
+    <rect x="-10" y="6" width="8" height="8" rx="1" fill="#1A1A1A" stroke="#00FFFF" stroke-width="1"/>
+  </g>
+  
+  <!-- Gaming Mouse (simplified) -->
+  <g transform="translate(450,340)" opacity="0.8">
+    <ellipse cx="0" cy="0" rx="12" ry="18" fill="#2A2A2A" stroke="#FFD700" stroke-width="1.5"/>
+    <line x1="0" y1="-10" x2="0" y2="0" stroke="#FFD700" stroke-width="1"/>
+    <rect x="-3" y="-6" width="6" height="8" rx="1" fill="url(#gradient1)" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  
+  <!-- Malayalam text "കളി" -->
+  <text x="400" y="500" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#FFD700" text-anchor="middle" stroke="#8B0000" stroke-width="1">കളി</text>
+  
+  <!-- Brand name -->
+  <text x="400" y="555" font-family="'Arial Black', sans-serif" font-size="48" font-weight="bold" fill="url(#gradient3)" text-anchor="middle" letter-spacing="6" filter="url(#glow)">KALI KALARI</text>
+  
+  <!-- Tagline -->
+  <text x="400" y="590" font-family="Arial" font-size="16" fill="#00FFFF" text-anchor="middle" letter-spacing="3">WHERE LEGENDS TRAIN</text>
+  
+  <!-- Simple corner accents -->
+  <g stroke="#00FFFF" stroke-width="3" fill="none" opacity="0.5">
+    <path d="M 160 160 L 120 160 L 120 200"/>
+    <path d="M 640 160 L 680 160 L 680 200"/>
+    <path d="M 160 640 L 120 640 L 120 600"/>
+    <path d="M 640 640 L 680 640 L 680 600"/>
+  </g>
+</svg>

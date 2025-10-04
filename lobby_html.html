@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Lobbies - Kali Kalari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00FFFF, #FFD700, #9D00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #00FFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #00FFFF, #9D00FF);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+        }
+
+        .btn-secondary:hover {
+            background: #FFD700;
+            color: #000;
+        }
+
+        .lobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lobby-card {
+            background: rgba(26, 26, 26, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #333;
+            transition: all 0.3s;
+        }
+
+        .lobby-card:hover {
+            border-color: #00FFFF;
+            transform: translateY(-5px);
+        }
+
+        .lobby-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .game-name {
+            font-size: 1.3rem;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .lobby-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            background: rgba(0, 255, 0, 0.2);
+            color: #00FF00;
+        }
+
+        .lobby-info {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .lobby-info div {
+            margin-bottom: 0.5rem;
+        }
+
+        .players-count {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #00FFFF;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .players-count .count {
+            font-size: 1.5rem;
+            color: #00FFFF;
+            font-weight: bold;
+        }
+
+        .lobby-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lobby-actions button {
+            flex: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid #00FFFF;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            color: #FFD700;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #FF0000;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00FFFF;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+            border-radius: 8px;
+            color: #FFF;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #00FFFF;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #00FF00;
+            color: #00FF00;
+        }
+
+        .message.error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #FF0000;
+            color: #FF0000;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #888;
+        }
+
+        .empty-state h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .lobbies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">KALI KALARI</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/booking">Book Slot</a></li>
+            <li><a href="/lobby">Lobbies</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Game Lobbies</h1>
+            <p style="color: #00FFFF;">Find teammates and organize matches</p>
+        </div>
+
+        <div class="actions-bar">
+            <button class="btn" onclick="openCreateModal()">+ Create Lobby</button>
+            <button class="btn btn-secondary" onclick="loadLobbies()">🔄 Refresh</button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div id="lobbiesList" class="lobbies-grid"></div>
+    </div>
+
+    <!-- Create Lobby Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Lobby</h2>
+                <button class="close-btn" onclick="closeCreateModal()">×</button>
+            </div>
+            <form id="createLobbyForm" onsubmit="handleCreateLobby(event)">
+                <div class="form-group">
+                    <label>Game Name</label>
+                    <select id="gameName" required>
+                        <option value="">Select a game</option>
+                        <option value="Valorant">Valorant</option>
+                        <option value="FC 24">FC 24 (FIFA)</option>
+                        <option value="WWE 2K24">WWE 2K24</option>
+                        <option value="Mortal Kombat">Mortal Kombat</option>
+                        <option value="COD Warzone">COD Warzone</option>
+                        <option value="PUBG">PUBG</option>
+                        <option value="GTA V">GTA V Online</option>
+                        <option value="Rocket League">Rocket League</option>
+                        <option value="CS2">Counter-Strike 2</option>
+                        <option value="Dota 2">Dota 2</option>
+                        <option value="Fortnite">Fortnite</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Slot Time</label>
+                    <input type="datetime-local" id="slotTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Max Players</label>
+                    <select id="maxPlayers" required>
+                        <option value="2">2 Players</option>
+                        <option value="3">3 Players</option>
+                        <option value="4">4 Players</option>
+                        <option value="5" selected>5 Players</option>
+                        <option value="6">6 Players</option>
+                        <option value="8">8 Players</option>
+                        <option value="10">10 Players</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Skill Level</label>
+                    <select id="skillLevel" required>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Pro">Pro</option>
+                        <option value="Any">Any Level</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <textarea id="description" rows="3" placeholder="Add any additional details..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" id="createBtn">Create Lobby</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = window.location.origin;
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            alert('Please login to access lobbies');
+            window.location.href = '/login';
+        }
+
+        async function loadLobbies() {
+            try {
+                const response = await fetch(`${API_URL}/api/lobbies`);
+                const lobbies = await response.json();
+
+                const lobbiesList = document.getElementById('lobbiesList');
+
+                if (lobbies.length === 0) {
+                    lobbiesList.innerHTML = `
+                        <div class="empty-state">
+                            <h3>No Active Lobbies</h3>
+                            <p>Be the first to create a lobby and find teammates!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                lobbiesList.innerHTML = lobbies.map(lobby => {
+                    const slotTime = new Date(lobby.slot_time).toLocaleString();
+                    const isFull = lobby.current_players >= lobby.max_players;
+                    
+                    return `
+                        <div class="lobby-card">
+                            <div class="lobby-header">
+                                <div class="game-name">${lobby.game_name}</div>
+                                <span class="lobby-status">${lobby.status}</span>
+                            </div>
+                            <div class="lobby-info">
+                                <div>🎮 Host: ${lobby.creator_name}</div>
+                                <div>⏰ Time: ${slotTime}</div>
+                                <div>🎯 Skill: ${lobby.skill_level}</div>
+                                ${lobby.description ? `<div>📝 ${lobby.description}</div>` : ''}
+                            </div>
+                            <div class="players-count">
+                                <div class="count">${lobby.current_players} / ${lobby.max_players}</div>
+                                <div style="color: #888; font-size: 0.9rem;">Players</div>
+                            </div>
+                            <div class="lobby-actions">
+                                <button class="btn" onclick="joinLobby(${lobby.id})" ${isFull ? 'disabled' : ''}>
+                                    ${isFull ? 'Full' : 'Join Lobby'}
+                                </button>
+                                <button class="btn btn-secondary" onclick="viewLobbyMembers(${lobby.id})">
+                                    View Members
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading lobbies:', error);
+                showMessage('Failed to load lobbies', 'error');
+            }
+        }
+
+        function openCreateModal() {
+            document.getElementById('createModal').classList.add('active');
+            // Set minimum datetime to now
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('slotTime').min = now.toISOString().slice(0, 16);
+        }
+
+        function closeCreateModal() {
+            document.getElementById('createModal').classList.remove('active');
+            document.getElementById('createLobbyForm').reset();
+        }
+
+        async function handleCreateLobby(e) {
+            e.preventDefault();
+            const btn = document.getElementById('createBtn');
+            btn.disabled = true;
+            btn.textContent = 'Creating...';
+
+            const lobbyData = {
+                game_name: document.getElementById('gameName').value,
+                slot_time: document.getElementById('slotTime').value,
+                max_players: parseInt(document.getElementById('maxPlayers').value),
+                skill_level: document.getElementById('skillLevel').value,
+                description: document.getElementById('description').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/api/lobbies`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(lobbyData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('Lobby created successfully!', 'success');
+                    closeCreateModal();
+                    loadLobbies();
+                } else {
+                    showMessage(data.error || 'Failed to create lobby', 'error');
+                    btn.disabled = false;
+                    btn.textContent = 'Create Lobby';
+                }
+            } catch (error) {
+                showMessage('Connection error. Please try again.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Create Lobby';
+            }
+        }
+
+        async function joinLobby(lobbyId) {
+            if (!confirm('Do you want to join this lobby?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/api/lobbies/${lobbyId}/join`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('Joined lobby successfully!', 'success');
+                    loadLobbies();
+                } else {
+                    showMessage(data.error || 'Failed to join lobby', 'error');
+                }
+            } catch (error) {
+                showMessage('Connection error. Please try again.', 'error');
+            }
+        }
+
+        async function viewLobbyMembers(lobbyId) {
+            try {
+                const response = await fetch(`${API_URL}/api/lobbies/${lobbyId}/members`);
+                const members = await response.json();
+
+                const membersList = members.map(m => `• ${m.username}`).join('\n');
+                alert(`Lobby Members:\n\n${membersList || 'No members yet'}`);
+            } catch (error) {
+                alert('Failed to load members');
+            }
+        }
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            setTimeout(() => messageDiv.style.display = 'none', 5000);
+        }
+
+        // Load lobbies on page load
+        loadLobbies();
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadLobbies, 30000);
+    </script>
+</body>
+</html>

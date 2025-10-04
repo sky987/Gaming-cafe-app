@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'kali-kalari-secret-2025-change-in-production';
 
 // PostgreSQL connection for Render.com
-const pool = new Pool({
+/*const pool = new Pool({
   host: process.env.PGHOST || 'dpg-d3gbkhe3jp1c73ekcc6g-a',
   port: process.env.PGPORT || 5432,
   database: process.env.PGDATABASE || 'gaming_cafe_db',
@@ -19,6 +19,11 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: false
   }
+});*/
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 // Middleware

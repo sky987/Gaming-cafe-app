@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: kali-kalari-app
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PGHOST
+        value: dpg-d3gbkhe3jp1c73ekcc6g-a
+      - key: PGPORT
+        value: 5432
+      - key: PGDATABASE
+        value: gaming_cafe_db
+      - key: PGUSER
+        value: gaming_cafe_db_user
+      - key: PGPASSWORD
+        value: piW9i4rqIZ65bCFyD3q941433Nun04yR
+      - key: JWT_SECRET
+        generateValue: true
+    healthCheckPath: /

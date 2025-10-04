@@ -7,12 +7,18 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'kali-kalari-secret-2025-change-in-production';
 
-// PostgreSQL connection
+// PostgreSQL connection for Render.com
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  host: process.env.PGHOST || 'dpg-d3gbkhe3jp1c73ekcc6g-a',
+  port: process.env.PGPORT || 5432,
+  database: process.env.PGDATABASE || 'gaming_cafe_db',
+  user: process.env.PGUSER || 'gaming_cafe_db_user',
+  password: process.env.PGPASSWORD || 'piW9i4rqIZ65bCFyD3q941433Nun04yR',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Middleware

@@ -1,0 +1,42 @@
+# Kali Kalari Gaming Cafe - Git Ignore File
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables (IMPORTANT - Don't commit secrets!)
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build files
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+
+# Database files (if running locally)
+*.sqlite
+*.db
+
+# Backup files
+*.bak
+*.backup
